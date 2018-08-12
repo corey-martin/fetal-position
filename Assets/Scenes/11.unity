@@ -3624,7 +3624,7 @@ Prefab:
     - target: {fileID: 114824380255072652, guid: 82750e1c2ceb14548825e9dbb7b0b1cd,
         type: 2}
       propertyPath: m_Text
-      value: PHEW.
+      value: I'M OKAY NOW.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82750e1c2ceb14548825e9dbb7b0b1cd, type: 2}
