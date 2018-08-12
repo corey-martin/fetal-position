@@ -19,6 +19,8 @@ public class Player : Moveable {
 	public GameObject winText;
 
 	AudioSource audioSource;
+	public AudioClip moveSound;
+	public AudioClip crouchSound;
 
 	void Awake() {
 		winText.SetActive(false);
@@ -71,22 +73,6 @@ public class Player : Moveable {
 				float hor = Input.GetAxisRaw("Horizontal");
 				float ver = Input.GetAxisRaw("Vertical");
 
-				if (!isPulling) {
-					if (hor == 1) {
-						facing = Vector3.right;
-						modelParent.eulerAngles = new Vector3 (0,0,90); 
-					} else if (hor == -1) {
-						facing = Vector3.left;
-						modelParent.eulerAngles = new Vector3 (0,0,-90); 
-					} else if (ver == -1) {
-						facing = Vector3.down;
-						modelParent.eulerAngles = new Vector3 (0,0,0); 
-					} else if (ver == 1) {
-						facing = Vector3.up;
-						modelParent.eulerAngles = new Vector3 (0,0,180); 
-					}
-				}
-
 				if (hor == 1) {
 					direction = Vector3.right;
 				} else if (hor == -1) { 
@@ -118,11 +104,33 @@ public class Player : Moveable {
 					if (CanMove(direction)) {
 						//Carry(direction);
 						audioSource.pitch = Random.Range(.8f, 1f);
+						audioSource.clip = moveSound;
 						audioSource.Play();
+
+						if (!isPulling) {
+							if (hor == 1) {
+								facing = Vector3.right;
+								modelParent.eulerAngles = new Vector3 (0,0,90); 
+							} else if (hor == -1) {
+								facing = Vector3.left;
+								modelParent.eulerAngles = new Vector3 (0,0,-90); 
+							} else if (ver == -1) {
+								facing = Vector3.down;
+								modelParent.eulerAngles = new Vector3 (0,0,0); 
+							} else if (ver == 1) {
+								facing = Vector3.up;
+								modelParent.eulerAngles = new Vector3 (0,0,180); 
+							}
+						}
+
 						StartCoroutine(MoveIt(direction));
 					} else if (objsToMove.Count > 0 && !isCrouching) {
-						StartCoroutine(MoveIt(direction));
-						Crouch();
+						if (objsToMove[0].transform.position.z < -0.5f) {
+							StartCoroutine(MoveIt(direction));
+							Crouch();
+						} else {
+							objsToMove.Clear();
+						}
 					} else {
 						objsToMove.Clear();
 					}
@@ -169,6 +177,9 @@ public class Player : Moveable {
 
 		if (canStand) {
 			isCrouching = !isCrouching;
+			audioSource.pitch = Random.Range(1f, 1.4f);
+			audioSource.clip = crouchSound;
+			audioSource.Play();
 		}
 	}
 }

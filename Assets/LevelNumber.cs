@@ -6,6 +6,6 @@ public class LevelNumber : MonoBehaviour {
 
 	void Start () {
 		Text levelNumText = GetComponent<Text>();
-		levelNumText.text = "LEVEL " + (SceneManager.GetActiveScene().buildIndex + 1);
+		levelNumText.text = "LEVEL " + SceneManager.GetActiveScene().buildIndex;
 	}
 }

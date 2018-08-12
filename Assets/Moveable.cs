@@ -127,7 +127,7 @@ public class Moveable : MonoBehaviour {
 		}
 
 		if (objsToMove.Count > 1) {
-			game.pullSound.pitch = Random.Range(.8f, 1f);
+			game.pullSound.pitch = Random.Range(.4f, .5f);
 			game.pullSound.Play();
 		}
 

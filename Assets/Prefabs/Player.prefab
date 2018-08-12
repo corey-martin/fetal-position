@@ -524,7 +524,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632842240190106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -1, z: 0}
+  m_LocalPosition: {x: 5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4983589928700518}
@@ -784,7 +784,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243626129605401240, guid: 07516e21fc794164f92a71a6bc034300,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8e3e5b61b4da75e4f805458e46d37c1b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f3131734a0eb17a4498b0d92d9dc2b92, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -880,7 +880,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243626129605401240, guid: 07516e21fc794164f92a71a6bc034300,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: c9008bc3096696d4b8810dc78c0f4a7f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e9e6ec645a067ea40b9a0f11f293cf11, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -984,6 +984,8 @@ MonoBehaviour:
   modelCrouch: {fileID: 1337012817778146}
   modelCrouchPull: {fileID: 1234729339535798}
   winText: {fileID: 0}
+  moveSound: {fileID: 8300000, guid: e9e6ec645a067ea40b9a0f11f293cf11, type: 3}
+  crouchSound: {fileID: 8300000, guid: 5672c5615903a6348b06c1d60196ec52, type: 3}
 --- !u!114 &114114547328292788
 MonoBehaviour:
   m_ObjectHideFlags: 1
