@@ -14,11 +14,15 @@ public class Menu : MonoBehaviour {
 	public GameObject menuMain;
 	public GameObject menuCredits;
 	public GameObject menuAreYouSure;
+	AudioSource audioSource;
+	public AudioClip selectSound;
+	public AudioClip submitSound;
 
 	void Awake() {
 		//PlayerPrefs.DeleteKey("saveIndex");
 		continueButton.gameObject.SetActive(PlayerPrefs.HasKey("saveIndex"));
 		MainMenuButtonSelect();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	void Update() {
@@ -29,6 +33,20 @@ public class Menu : MonoBehaviour {
 				BackButton();
 			}
 		}
+	}
+
+	public void PlaySelectSound() {
+		if (audioSource != null) {
+			audioSource.clip = selectSound;
+			audioSource.pitch = Random.Range(.8f, 1f);
+			audioSource.Play();
+		}
+	}
+
+	public void PlaySubmitSound() {
+		audioSource.clip = submitSound;
+		audioSource.pitch = Random.Range(.8f, 1f);
+		audioSource.Play();
 	}
 
 	void MainMenuButtonSelect() {

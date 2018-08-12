@@ -9,6 +9,7 @@ public class Game : MonoBehaviour {
 
 	public static bool freeze = false;
 	public AudioSource pullSound;
+	public AudioSource undoSound;
 
 	public static int sceneIndex;
 
@@ -22,12 +23,16 @@ public class Game : MonoBehaviour {
 	void Update() {
 		if (!Moveable.isMoving && !freeze) {
 			if (Input.GetButtonDown("Undo")) {
+				undoSound.pitch = Random.Range(.9f, 1f);
+				undoSound.Play();
 				foreach (Moveable m in moveables) {
 					m.DoUndo();
 				}
 			}
 
 			if (Input.GetButtonDown("Restart")) {
+				undoSound.pitch = Random.Range(.5f, .5f);
+				undoSound.Play();
 				foreach (Moveable m in moveables) {
 					m.DoRestart();
 				}
@@ -51,6 +56,7 @@ public class Game : MonoBehaviour {
 		if (sceneIndex < (SceneManager.sceneCountInBuildSettings - 1)) {
 			SceneManager.LoadScene(sceneIndex + 1, LoadSceneMode.Single);
 		} else {
+			PlayerPrefs.DeleteKey("saveIndex");
 			SceneManager.LoadScene(0, LoadSceneMode.Single);
 		}
 	}
