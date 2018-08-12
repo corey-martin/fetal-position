@@ -16,6 +16,7 @@ public class Menu : MonoBehaviour {
 	public GameObject menuAreYouSure;
 
 	void Awake() {
+		//PlayerPrefs.DeleteKey("saveIndex");
 		continueButton.gameObject.SetActive(PlayerPrefs.HasKey("saveIndex"));
 		MainMenuButtonSelect();
 	}
@@ -63,10 +64,14 @@ public class Menu : MonoBehaviour {
 	}
 
 	public void AreYouSureButton() {
-		menuMain.SetActive(false);
-		menuAreYouSure.SetActive(true);
-		noButton.Select();
-		noButton.OnSelect(null);
+		if (continueButton.gameObject.activeSelf) {
+			menuMain.SetActive(false);
+			menuAreYouSure.SetActive(true);
+			noButton.Select();
+			noButton.OnSelect(null);
+		} else {
+			StartButton();
+		}
 	}
 
 	public void QuitButton() {
