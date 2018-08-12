@@ -36,6 +36,9 @@ public class LevelMaker : MonoBehaviour {
 				InstantiateOne(groundPrefab, "Grounds", x, y);
 			} else if (c == "O") {
 				InstantiateOne(blockPrefab, "Blocks", x, y);
+			} else if (c == "U") {
+				InstantiateOne(blockPrefab, "Blocks", x, y);
+				InstantiateOne(blockPrefab, "Blocks", x, y, -1);
 			}
 
 			if (c == "\n") {
@@ -49,13 +52,13 @@ public class LevelMaker : MonoBehaviour {
 		//
 	}
 
-	void InstantiateOne(GameObject prefab, string parent, int _x, int _y) {
-		GameObject go = Instantiate (prefab, _x, -_y);
+	void InstantiateOne(GameObject prefab, string parent, int _x, int _y, int _z = 0) {
+		GameObject go = Instantiate (prefab, _x, -_y, _z);
 		go.transform.parent = GameObject.Find(parent).transform;
 	}
 
-	public GameObject Instantiate(GameObject gObject, int x, int y) {
-		return GameObject.Instantiate (gObject, new Vector3(x, y), Quaternion.identity) as GameObject;
+	public GameObject Instantiate(GameObject gObject, int x, int y, int z) {
+		return GameObject.Instantiate (gObject, new Vector3(x, y, z), Quaternion.identity) as GameObject;
 	}
 }
 

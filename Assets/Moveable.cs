@@ -92,31 +92,6 @@ public class Moveable : MonoBehaviour {
 		}
 	}
 
-	public void Carry(Vector3 dir) {
-		// Carry stuff
-		List<Moveable> newMoves = new List<Moveable>();
-
-		foreach (Moveable m in objsToMove) {
-			if (m.tag != "Player") {
-				foreach (Transform child in m.transform) {
-					Vector3 posToCheck = child.position + Vector3.back;
-					Collider[] hitColliders = Physics.OverlapSphere(posToCheck, 0.25f);
-					foreach (Collider col in hitColliders) {
-						if (col.tag == "Tile" && col.transform.parent.gameObject != this.gameObject) {
-							Moveable passenger = col.transform.parent.GetComponent<Moveable>();
-							if (!objsToMove.Contains(passenger) && passenger.CanMove(dir)) {
-								newMoves.Add(passenger);
-							}
-						}
-					}
-				}
-			}
-		}
-		foreach (Moveable passenger in newMoves) {
-			passenger.AddIt(dir);
-		}
-	}
-
 	public IEnumerator MoveIt(Vector3 dir) {
 		isMoving = true;
 

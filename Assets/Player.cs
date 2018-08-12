@@ -61,6 +61,7 @@ public class Player : Moveable {
 				isPulling = false;
 				winText.SetActive(true);
 				StartCoroutine(Game.NextLevel());
+				StartCoroutine(Sigh());
 			} else {
 				// MOVEMENT
 
@@ -86,8 +87,8 @@ public class Player : Moveable {
 				}
 
 				if (direction != Vector3.zero) {
-					if (isPulling && facing == -direction) {
-						Vector3 posToCheck = transform.position - direction;
+					if (isPulling) {
+						Vector3 posToCheck = transform.position + facing;
 						if (!isCrouching) {
 							posToCheck += Vector3.back;
 						}
@@ -102,7 +103,6 @@ public class Player : Moveable {
 						}
 					}
 					if (CanMove(direction)) {
-						//Carry(direction);
 						audioSource.pitch = Random.Range(.8f, 1f);
 						audioSource.clip = moveSound;
 						audioSource.Play();
@@ -124,7 +124,7 @@ public class Player : Moveable {
 						}
 
 						StartCoroutine(MoveIt(direction));
-					} else if (objsToMove.Count > 0 && !isCrouching) {
+					} else if (objsToMove.Count > 0 && !isCrouching && direction == -facing) {
 						if (objsToMove[0].transform.position.z < -0.5f) {
 							StartCoroutine(MoveIt(direction));
 							Crouch();
@@ -181,5 +181,13 @@ public class Player : Moveable {
 			audioSource.clip = crouchSound;
 			audioSource.Play();
 		}
+	}
+
+	IEnumerator Sigh() {
+		yield return new WaitForSeconds(0.5f);
+		Vector3 playerRotation = modelParent.eulerAngles;
+		modelParent.eulerAngles = playerRotation + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+		yield return new WaitForSeconds(0.5f);
+		modelParent.eulerAngles = playerRotation;
 	}
 }

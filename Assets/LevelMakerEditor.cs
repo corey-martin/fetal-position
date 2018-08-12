@@ -14,7 +14,8 @@ EditorGUILayout.HelpBox(@"LEGEND
 -----------------------------
 B = Void wall
 X = Ground
-O = Block", MessageType.Info);
+O = Block
+U = Two Blocks", MessageType.Info);
 
 		LevelMaker lvlMkr = (LevelMaker)target;
 
