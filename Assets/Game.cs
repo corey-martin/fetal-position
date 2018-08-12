@@ -46,6 +46,13 @@ public class Game : MonoBehaviour {
 			}
 		}
 
+		if (Input.GetKeyDown("+") || Input.GetKeyDown("=")) {
+			NextLevelNow();
+		}
+		if (Input.GetKeyDown("-")) {
+			PreviousLevel();
+		}
+
 		if (Input.GetKeyDown("escape")) {
 			SceneManager.LoadScene(0, LoadSceneMode.Single);
 		}
@@ -55,6 +62,13 @@ public class Game : MonoBehaviour {
 		foreach (Moveable m in moveables) {
 			m.AddToUndoStack();
 		}
+	}
+
+	public void PreviousLevel() {
+		SceneManager.LoadScene(sceneIndex - 1, LoadSceneMode.Single);
+	}
+	public void NextLevelNow() {
+		SceneManager.LoadScene(sceneIndex + 1, LoadSceneMode.Single);
 	}
 
 	public static IEnumerator NextLevel() {
