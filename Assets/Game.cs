@@ -7,6 +7,8 @@ public class Game : MonoBehaviour {
 
 	[HideInInspector] public Moveable[] moveables;
 
+	public Player player;
+
 	public static bool freeze = false;
 	public AudioSource pullSound;
 	public AudioSource undoSound;
@@ -14,6 +16,9 @@ public class Game : MonoBehaviour {
 	public static int sceneIndex;
 
 	void Start() {
+		if (player == null) {
+			player = transform.root.GetComponent<Player>();
+		}
 		moveables = FindObjectsOfType<Moveable>();
 
 		sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -28,6 +33,7 @@ public class Game : MonoBehaviour {
 				foreach (Moveable m in moveables) {
 					m.DoUndo();
 				}
+				player.UpdateFacing();
 			}
 
 			if (Input.GetButtonDown("Restart")) {
@@ -36,6 +42,7 @@ public class Game : MonoBehaviour {
 				foreach (Moveable m in moveables) {
 					m.DoRestart();
 				}
+				player.UpdateFacing();
 			}
 		}
 

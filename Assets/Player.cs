@@ -190,4 +190,16 @@ public class Player : Moveable {
 		yield return new WaitForSeconds(0.5f);
 		modelParent.eulerAngles = playerRotation;
 	}
+
+	public void UpdateFacing() {
+		if (Mathf.Approximately(modelParent.eulerAngles.z, 90)) {
+			facing = Vector3.right;
+		} else if (Mathf.Approximately(modelParent.eulerAngles.z, -90)) {
+			facing = Vector3.left;
+		} else if (Mathf.Approximately(modelParent.eulerAngles.z, 0)) {
+			facing = Vector3.down;
+		} else if (Mathf.Approximately(modelParent.eulerAngles.z, 180)) {
+			facing = Vector3.up;
+		}
+	}
 }
