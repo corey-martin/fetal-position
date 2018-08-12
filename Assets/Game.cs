@@ -46,12 +46,12 @@ public class Game : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown("+") || Input.GetKeyDown("=")) {
+		/*if (Input.GetKeyDown("+") || Input.GetKeyDown("=")) {
 			NextLevelNow();
 		}
 		if (Input.GetKeyDown("-")) {
 			PreviousLevel();
-		}
+		}*/
 
 		if (Input.GetKeyDown("escape")) {
 			SceneManager.LoadScene(0, LoadSceneMode.Single);
