@@ -2441,7 +2441,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: WOMB
+  m_Text: HIDING SPOT
 --- !u!222 &1502655175
 CanvasRenderer:
   m_ObjectHideFlags: 0

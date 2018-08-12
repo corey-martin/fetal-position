@@ -235,7 +235,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: I'M OKAY NOW.
+  m_Text: PHEW.
 --- !u!222 &222048642002123808
 CanvasRenderer:
   m_ObjectHideFlags: 1
